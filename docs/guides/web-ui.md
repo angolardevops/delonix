@@ -43,6 +43,10 @@ ecossistema** do Engine num único snapshot (`/api/state`) e actualiza-se sozinh
 - **Redes** — criar/remover redes a partir da UI.
 - **Novo projecto** — colar um **Delonixfile** + **delonix-stack.yaml**, construir
   e executar a stack sem ir à CLI.
+- **Volumes** — criar/remover, incluindo volumes **NFS/TrueNAS** (`--driver nfs
+  --device servidor:/export`; requer `nfs-common`).
+- **Reconfigurar recursos** — mudar memória/CPU/política de reinício de um
+  container ao vivo (sem recriar).
 - **Monitor** (`sudo delonix monitor`) — serviço do *engine* que mostra ao vivo o
   que cada container acede para fora e quem o acede de fora (conntrack/netfilter).
   Isolado: nenhum container consegue ver isto (sem `CAP_NET_ADMIN`, netns próprio).
