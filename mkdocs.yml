@@ -1,0 +1,144 @@
+site_name: Delonix Engine
+site_description: Motor de containers nativo do kernel, sem daemon, num único binário — em Rust.
+site_url: https://angolardevops.github.io/delonix/
+repo_url: https://github.com/angolardevops/delonix
+repo_name: angolardevops/delonix
+copyright: Delonix Engine — documentação
+
+theme:
+  name: material
+  language: pt
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Modo claro
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search:
+      lang: pt
+
+nav:
+  - Início: index.md
+  - Instalação: install.md
+  - Arranque rápido: quickstart.md
+  - Docker · Podman · Delonix: compare.md
+  - Guias:
+      - Containers: guides/containers.md
+      - Imagens: guides/images.md
+      - Volumes e dados: guides/volumes.md
+      - Redes: guides/networks.md
+      - Stacks (compose): guides/compose.md
+      - Pods: guides/pods.md
+      - Rootless: guides/rootless.md
+      - Segurança: guides/security.md
+      - Painel web: guides/web-ui.md
+      - Plataforma de IA: guides/ai-llm.md
+      - Kubernetes (CRI): guides/kubernetes.md
+      - Host remoto (SSH): guides/remote.md
+  - Conceitos:
+      - Arquitectura: concepts/architecture.md
+      - Protecção do host: concepts/host-protection.md
+      - Modelo de segurança: concepts/security.md
+  - Referência:
+      - Visão geral: reference/index.md
+      - Containers:
+          - 'delonix run': reference/run.md
+          - 'delonix ps': reference/ps.md
+          - 'delonix exec': reference/exec.md
+          - 'delonix ssh': reference/ssh.md
+          - 'delonix logs': reference/logs.md
+          - 'delonix start': reference/start.md
+          - 'delonix stop': reference/stop.md
+          - 'delonix rm': reference/rm.md
+          - 'delonix pause': reference/pause.md
+          - 'delonix unpause': reference/unpause.md
+          - 'delonix stats': reference/stats.md
+          - 'delonix inspect': reference/inspect.md
+          - 'delonix top': reference/top.md
+          - 'delonix diff': reference/diff.md
+          - 'delonix cp': reference/cp.md
+          - 'delonix commit': reference/commit.md
+          - 'delonix update': reference/update.md
+          - 'delonix prune': reference/prune.md
+          - 'delonix history': reference/history.md
+          - 'delonix healthcheck': reference/healthcheck.md
+          - 'delonix events': reference/events.md
+          - 'delonix container': reference/container.md
+      - Imagens:
+          - 'delonix pull': reference/pull.md
+          - 'delonix push': reference/push.md
+          - 'delonix images': reference/images.md
+          - 'delonix build': reference/build.md
+          - 'delonix tag': reference/tag.md
+          - 'delonix rmi': reference/rmi.md
+          - 'delonix login': reference/login.md
+          - 'delonix logout': reference/logout.md
+          - 'delonix scan': reference/scan.md
+          - 'delonix verify': reference/verify.md
+          - 'delonix oci-export': reference/oci-export.md
+          - 'delonix image': reference/image.md
+      - Rede & orquestração:
+          - 'delonix network': reference/network.md
+          - 'delonix volume': reference/volume.md
+          - 'delonix pod': reference/pod.md
+          - 'delonix service': reference/service.md
+          - 'delonix up': reference/up.md
+          - 'delonix down': reference/down.md
+          - 'delonix scale': reference/scale.md
+          - 'delonix autoscale': reference/autoscale.md
+          - 'delonix ingress': reference/ingress.md
+          - 'delonix convert': reference/convert.md
+          - 'delonix generate': reference/generate.md
+          - 'delonix kube': reference/kube.md
+      - Plataforma & servidores:
+          - 'delonix serve': reference/serve.md
+          - 'delonix mcp': reference/mcp.md
+          - 'delonix cri': reference/cri.md
+          - 'delonix llm': reference/llm.md
+          - 'delonix info': reference/info.md
+          - 'delonix thermal': reference/thermal.md
+          - 'delonix audit': reference/audit.md
+          - 'delonix completion': reference/completion.md
+          - 'delonix init': reference/init.md
