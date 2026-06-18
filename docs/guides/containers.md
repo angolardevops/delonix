@@ -12,12 +12,18 @@ delonix run -d --name web nginx             # em segundo plano (detached)
 delonix run -it ubuntu bash                 # interactivo com TTY
 ```
 
+!!! note "Nomes e portas são validados"
+    Como no Docker/Podman, o `run` **recusa** um `--name` que já exista e uma
+    **porta de host já ocupada** — quer por outro container do Delonix, quer por
+    outro processo/engine do host (p.ex. um container do Docker). Escolhe outro
+    nome/porta, ou remove o container que está a usar (`delonix rm <nome>`).
+
 Flags de execução mais comuns:
 
 | Flag | Efeito |
 |---|---|
 | `-d, --detach` | corre em segundo plano, imprime o id |
-| `--name <n>` | dá-lhe um nome legível |
+| `--name <n>` | dá-lhe um nome **único** (rejeitado se já existir) |
 | `-e KEY=val` | variável de ambiente |
 | `-v /host:/cont` | monta um volume/bind |
 | `-p 8080:80` | publica uma porta (precisa de `--network`) |
