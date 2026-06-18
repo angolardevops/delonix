@@ -34,9 +34,8 @@ conformidade total **OCI** e **CRI** (Kubernetes).
 ## Em 30 segundos
 
 ```bash
-# instala o binário (uma linha — ver "Instalação")
-curl -fsSL https://github.com/angolardevops/delonix/releases/latest/download/delonix-x86_64-linux -o delonix
-chmod +x delonix && sudo mv delonix /usr/local/bin/
+# instala (ou actualiza) o binário + autocomplete — uma linha
+curl -fsSL https://raw.githubusercontent.com/angolardevops/delonix/main/install.sh | sh
 
 delonix run alpine echo "olá, mundo"          # corre um container
 delonix run -d --network -p 8080:80 nginx     # nginx em segundo plano, porta publicada

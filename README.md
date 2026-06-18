@@ -11,10 +11,12 @@ web embebido, um gateway de IA (OpenAI/Ollama) e conformidade OCI + CRI.
 ## Instalação (um único binário estático)
 
 ```bash
-curl -fsSL https://github.com/angolardevops/delonix/releases/latest/download/delonix-x86_64-linux -o delonix
-chmod +x delonix && sudo mv delonix /usr/local/bin/
-delonix --version
+curl -fsSL https://raw.githubusercontent.com/angolardevops/delonix/main/install.sh | sh
 ```
+
+Instala (ou **actualiza**) o binário e configura o **autocomplete**. Correr de
+novo actualiza para a última versão. Alternativa manual em
+[Instalação](https://angolardevops.github.io/delonix/install/).
 
 ## Em 30 segundos
 

@@ -5,22 +5,24 @@ serviço para arrancar, nem dependências de runtime.
 
 ## Linux (x86-64)
 
-=== "Uma linha (recomendado)"
+=== "Instalador (recomendado)"
 
     ```bash
-    curl -fsSL https://github.com/angolardevops/delonix/releases/latest/download/delonix-x86_64-linux -o delonix
-    chmod +x delonix
-    sudo mv delonix /usr/local/bin/delonix
-    delonix --version
+    curl -fsSL https://raw.githubusercontent.com/angolardevops/delonix/main/install.sh | sh
     ```
 
-=== "Verificar o checksum"
+    O instalador descarrega o binário mais recente, **verifica o checksum**,
+    **instala ou actualiza** (substitui mesmo se o `delonix` estiver a correr, via
+    rename atómico — sem o erro *"Text file busy"*) e **configura o autocomplete**
+    da tua shell (bash/zsh/fish). Correr de novo = **actualizar** para a última versão.
+
+=== "Manual"
 
     ```bash
     curl -fsSL https://github.com/angolardevops/delonix/releases/latest/download/delonix-x86_64-linux -o delonix
     curl -fsSL https://github.com/angolardevops/delonix/releases/latest/download/SHA256SUMS -o SHA256SUMS
     sha256sum -c SHA256SUMS --ignore-missing
-    chmod +x delonix && sudo mv delonix /usr/local/bin/
+    chmod +x delonix && sudo mv delonix /usr/local/bin/      # `mv` substitui mesmo a correr
     ```
 
 O binário é **estático (musl)** — corre em qualquer distribuição Linux x86-64
@@ -56,8 +58,27 @@ delonix completion bash | sudo tee /etc/bash_completion.d/delonix >/dev/null
 
 ## Atualizar
 
-Repete o passo de instalação — o binário substitui o anterior. Para ver a versão
-mais recente: [Releases](https://github.com/angolardevops/delonix/releases).
+**Volta a correr o instalador** — ele substitui o binário pela versão mais
+recente (mesmo se estiver a correr) e reinstala o autocomplete:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/angolardevops/delonix/main/install.sh | sh
+```
+
+Versões: [Releases](https://github.com/angolardevops/delonix/releases).
+
+## Autocomplete
+
+O instalador já o configura. Para o fazer à mão:
+
+```bash
+delonix completion bash | sudo tee /etc/bash_completion.d/delonix >/dev/null   # bash
+delonix completion zsh  | sudo tee /usr/share/zsh/site-functions/_delonix >/dev/null   # zsh
+delonix completion fish > ~/.config/fish/completions/delonix.fish              # fish
+```
+
+Reabre a shell para activar. O autocomplete é **dinâmico**: completa nomes reais
+de containers, imagens, pods e volumes lidos do teu store.
 
 ## Desinstalar
 
