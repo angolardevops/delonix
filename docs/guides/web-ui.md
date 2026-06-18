@@ -26,7 +26,18 @@ ecossistema** do Engine num único snapshot (`/api/state`) e actualiza-se sozinh
 - **Redes** — bridges, subnets, gateways, nº de containers.
 - **Volumes** — armazenamento persistente.
 - **Stacks** — aplicações multi-container (serviços a correr / total).
+- **Topologia AO VIVO** — mapa dos containers reais segmentado por rede, com a
+  **animação de tráfego real** (das métricas de rede) e as **ligações externas**:
+  quando alguém de fora acede a um container, aparece o **IP de origem** a fluir
+  para ele. Métricas reais por container: CPU% (cgroup) e rede (veth).
 - **Eventos** — o `audit.log` do Engine (acções mutáveis).
+- **Idioma** — selector **PT/EN** no topo (a escolha fica guardada).
+
+!!! note "Ligações externas ao vivo"
+    O mapa de ligações externas usa o `conntrack` (netlink). Instala-o com
+    `sudo apt install conntrack` e corre o painel como root (`sudo delonix serve ui`).
+    Sem ele, a topologia mostra à mesma os containers e o tráfego; só não traça as
+    ligações externas com o IP de origem.
 
 ## Sincronização
 
