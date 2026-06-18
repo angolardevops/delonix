@@ -31,11 +31,24 @@ está implementado e verificado, com o **código de saída real** propagado.
 | `CreateContainer`/`StartContainer`/`StopContainer`/`RemoveContainer` | ✅ |
 | `ListContainers`/`ContainerStatus` (com exit code) | ✅ |
 | `ImageService` (pull/list/remove) | ✅ |
+| `ContainerStats`/`ListContainerStats` (CPU+memória) | ✅ |
+| `PodSandboxStats`/`ListPodSandboxStats` (agregado) | ✅ |
 | `Exec`/`Attach`/`PortForward` (streaming) | ❌ `UNIMPLEMENTED` |
-| `ContainerStats`/`PodSandboxStats` | ❌ vazio |
 
-Ou seja: o Delonix **corre** pods e containers para o kubelet, mas `kubectl exec`,
-`logs -f`, `port-forward` e as métricas por-pod ainda não estão disponíveis.
+Ou seja: o Delonix **corre** pods e containers para o kubelet e fornece-lhe
+**métricas reais** (Summary API / HPA), mas `kubectl exec`, `logs -f` e
+`port-forward` (streaming) ainda não estão disponíveis.
+
+### Métricas (CRI stats)
+
+```bash
+crictl --runtime-endpoint unix:///run/delonix-cri.sock stats     # por container
+crictl --runtime-endpoint unix:///run/delonix-cri.sock statsp    # por pod sandbox
+```
+
+CPU vem do `cpu.stat` do cgroup v2 (cumulativa, em core-nanossegundos); a memória
+do RSS real dos processos do cgroup. É o que o **kubelet** lê para a Summary API e
+o **HPA** para escalar.
 
 ## Gerar manifests
 
