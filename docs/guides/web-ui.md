@@ -15,13 +15,18 @@ Abre `http://127.0.0.1:9444` no browser.
 
 ## O que faz
 
-- **Painel** — visão geral: containers a correr/total, imagens, CPU/carga do host,
-  memória e PIDs da `delonix.slice`.
-- **Containers** — iniciar, parar, reiniciar, remover; ver **logs**; **consola**
-  (executa comandos dentro do container a partir do browser).
-- **Imagens** — listar e remover.
-- **Redes** — bridges, subnets, gateways.
-- **Stacks** — aplicações multi-container, com a contagem de réplicas a correr.
+A **Engine Console** (tema escuro, denso, estilo enterprise) recolhe **todo o
+ecossistema** do Engine num único snapshot (`/api/state`) e actualiza-se sozinha:
+
+- **Painel** — host (SO, kernel, CPU, carga, memória, swap, disco, PIDs, uptime),
+  containers a correr/total, imagens, eventos recentes.
+- **Containers** — iniciar, parar, reiniciar, pausar, remover; estado, imagem,
+  portas, rede, stack, memória (do cgroup); ver **logs** e **consola**.
+- **Imagens** — repositório, tag, em-uso-por, dangling.
+- **Redes** — bridges, subnets, gateways, nº de containers.
+- **Volumes** — armazenamento persistente.
+- **Stacks** — aplicações multi-container (serviços a correr / total).
+- **Eventos** — o `audit.log` do Engine (acções mutáveis).
 
 ## Sincronização
 
