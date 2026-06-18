@@ -27,6 +27,11 @@ services:
 
 Gera um esqueleto com `delonix init`.
 
+!!! note "Campos tolerantes"
+    `kind` (aceita `Stack`/`kind`/`Kind` ou omitido) e `apiVersion` são opcionais —
+    por omissão assumem `Stack` e `delonix/v1`. Se não puseres `metadata.name`, o
+    nome do stack é derivado do **nome do ficheiro** (ex.: `stack.yaml` → `stack`).
+
 ## Ciclo de vida da stack
 
 ```bash
