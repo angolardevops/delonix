@@ -8,15 +8,25 @@ Manage containers (Docker/Podman compat: `container run` = `run`)
 Usage: delonix container [OPTIONS] <COMMAND>
 
 Commands:
-  run    Create and run a container (= `delonix run`)
-  ls     List containers (= `delonix ps`)
-  start  (Re)start one or more stopped containers (= `delonix start`)
-  stop   Stop one or more containers (= `delonix stop`)
-  rm     Remove one or more containers (= `delonix rm`)
-  exec   Run a command in a live container (= `delonix exec`)
-  logs   Show a container's logs (= `delonix logs`)
-  stats  Resource dashboard (= `delonix stats`)
-  help   Print this message or the help of the given subcommand(s)
+  run          Create and run a container (= `delonix run`)
+  ls           List containers (= `delonix ps`)
+  start        (Re)start one or more stopped containers (= `delonix start`)
+  stop         Stop one or more containers (= `delonix stop`)
+  rm           Remove one or more containers (= `delonix rm`)
+  exec         Run a command in a live container (= `delonix exec`)
+  logs         Show a container's logs (= `delonix logs`)
+  stats        Resource dashboard (= `delonix stats`)
+  ssh          Open an interactive shell in a container (= `delonix ssh`)
+  top          Show the running processes of a container (= `delonix top`)
+  inspect      Show low-level JSON for a container (= `delonix inspect`)
+  diff         Show changed files in a container's rootfs (= `delonix diff`)
+  pause        Pause a container (= `delonix pause`)
+  unpause      Unpause a container (= `delonix unpause`)
+  commit       Create an image from a container (= `delonix commit`)
+  cp           Copy files to/from a container (= `delonix cp`)
+  update       Update a container's resource limits (= `delonix update`)
+  healthcheck  Run a container's HEALTHCHECK (= `delonix healthcheck`)
+  help         Print this message or the help of the given subcommand(s)
 
 Options:
       --pt-pt  Show help in Portuguese (pt-PT) instead of English
@@ -174,6 +184,7 @@ Arguments:
   <CONTAINER>  
 
 Options:
+  -f, --follow       Follow log output (like `tail -f`)
       --tail <TAIL>  
       --pt-pt        Show help in Portuguese (pt-PT) instead of English
   -h, --help         Print help
@@ -193,4 +204,180 @@ Options:
       --interval <INTERVAL>  [default: 1000]
       --pt-pt                Show help in Portuguese (pt-PT) instead of English
   -h, --help                 Print help
+```
+
+## `delonix container ssh`
+
+> Open an interactive shell in a container (= `delonix ssh`)
+
+```text
+Open an interactive shell in a container (= `delonix ssh`)
+
+Usage: delonix container ssh [OPTIONS] <CONTAINER> [COMMAND]...
+
+Arguments:
+  <CONTAINER>   
+  [COMMAND]...  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container top`
+
+> Show the running processes of a container (= `delonix top`)
+
+```text
+Show the running processes of a container (= `delonix top`)
+
+Usage: delonix container top [OPTIONS] <CONTAINER>
+
+Arguments:
+  <CONTAINER>  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container inspect`
+
+> Show low-level JSON for a container (= `delonix inspect`)
+
+```text
+Show low-level JSON for a container (= `delonix inspect`)
+
+Usage: delonix container inspect [OPTIONS] <TARGET>
+
+Arguments:
+  <TARGET>  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container diff`
+
+> Show changed files in a container's rootfs (= `delonix diff`)
+
+```text
+Show changed files in a container's rootfs (= `delonix diff`)
+
+Usage: delonix container diff [OPTIONS] <CONTAINER>
+
+Arguments:
+  <CONTAINER>  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container pause`
+
+> Pause a container (= `delonix pause`)
+
+```text
+Pause a container (= `delonix pause`)
+
+Usage: delonix container pause [OPTIONS] <CONTAINERS>...
+
+Arguments:
+  <CONTAINERS>...  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container unpause`
+
+> Unpause a container (= `delonix unpause`)
+
+```text
+Unpause a container (= `delonix unpause`)
+
+Usage: delonix container unpause [OPTIONS] <CONTAINERS>...
+
+Arguments:
+  <CONTAINERS>...  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container commit`
+
+> Create an image from a container (= `delonix commit`)
+
+```text
+Create an image from a container (= `delonix commit`)
+
+Usage: delonix container commit [OPTIONS] <CONTAINER> <TAG>
+
+Arguments:
+  <CONTAINER>  
+  <TAG>        
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container cp`
+
+> Copy files to/from a container (= `delonix cp`)
+
+```text
+Copy files to/from a container (= `delonix cp`)
+
+Usage: delonix container cp [OPTIONS] <SRC> <DST>
+
+Arguments:
+  <SRC>  
+  <DST>  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix container update`
+
+> Update a container's resource limits (= `delonix update`)
+
+```text
+Update a container's resource limits (= `delonix update`)
+
+Usage: delonix container update [OPTIONS] <CONTAINER>
+
+Arguments:
+  <CONTAINER>  
+
+Options:
+  -m, --memory <MEMORY>    
+  -c, --cpus <CPUS>        
+      --restart <RESTART>  
+      --pt-pt              Show help in Portuguese (pt-PT) instead of English
+  -h, --help               Print help
+```
+
+## `delonix container healthcheck`
+
+> Run a container's HEALTHCHECK (= `delonix healthcheck`)
+
+```text
+Run a container's HEALTHCHECK (= `delonix healthcheck`)
+
+Usage: delonix container healthcheck [OPTIONS] <CONTAINER>
+
+Arguments:
+  <CONTAINER>  
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
 ```

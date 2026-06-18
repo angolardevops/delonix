@@ -51,6 +51,7 @@ delonix rm web           # remove (use -f para forçar)
 
 ```bash
 delonix logs web --tail 100      # stdout/stderr capturados
+delonix logs -f web              # segue ao vivo (como `tail -f`)
 delonix exec -it web sh          # comando dentro do container (PTY)
 delonix ssh web                  # atalho: shell interactiva
 delonix top web                  # processos

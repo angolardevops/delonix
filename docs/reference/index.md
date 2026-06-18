@@ -25,7 +25,7 @@ Apêndice de **todos** os comandos e subcomandos do Delonix, gerado a partir do 
 - [`delonix history`](history.md)
 - [`delonix healthcheck`](healthcheck.md)
 - [`delonix events`](events.md)
-- [`delonix container`](container.md) — 8 subcomandos
+- [`delonix container`](container.md) — 18 subcomandos
 
 ## Imagens
 
