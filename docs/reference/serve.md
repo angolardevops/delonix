@@ -13,6 +13,7 @@ Arguments:
 Options:
       --addr <ADDR>            Listen address (UI defaults to 127.0.0.1:9444 if unset)
       --token <TOKEN>          Required Bearer token (or `$DELONIX_TOKEN`). No token = open
+      --login                  (UI) Require login with internal users (page + sessions; first user bootstraps)
       --tls-cert <TLS_CERT>    TLS server certificate chain (PEM). Enables HTTPS (needs --tls-key)
       --tls-key <TLS_KEY>      TLS server private key (PEM: PKCS#8, RSA or EC)
       --client-ca <CLIENT_CA>  Client CA (PEM): require a client certificate (mTLS)

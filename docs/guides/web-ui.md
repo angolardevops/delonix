@@ -57,6 +57,33 @@ ecossistema** do Engine num único snapshot (`/api/state`) e actualiza-se sozinh
     Sem ele, a topologia mostra à mesma os containers e o tráfego; só não traça as
     ligações externas com o IP de origem.
 
+## Login & utilizadores internos
+
+Por omissão a consola não tem ecrã de login (escuta em loopback). Para exigir
+autenticação, arranca com `--login`:
+
+```bash
+sudo delonix serve ui --login                      # http://127.0.0.1:9444
+sudo delonix serve ui --addr 0.0.0.0:9444 --login  # exposto, com login
+```
+
+- **1.º acesso (bootstrap)** — a página mostra *Criar administrador*. O primeiro
+  utilizador registado é o admin.
+- **Sessões** — por *cookie* (`HttpOnly`, `SameSite=Strict`, validade 12 h).
+- **Palavras-passe** — guardadas com **PBKDF2-HMAC-SHA256** (600 000 iterações,
+  via `ring`); nunca em claro. Ficam em `$DELONIX_ROOT/users/<nome>.json`.
+- **Adicionar utilizadores** — em **Definições**, um admin autenticado cria novos
+  utilizadores internos. Registar fora do bootstrap **exige sessão** (`401` sem ela).
+- **Terminar sessão** — botão no topo (ou em *Definições*).
+- **Automação** — com `--login`, o `--token` (Bearer) continua a funcionar para
+  chamadas à API sem cookie.
+
+!!! note "Utilizadores internos, não PAM"
+    São contas **internas do Engine**, não utilizadores do sistema (PAM). Num
+    binário **estático único** não é possível ligar à `libpam`, por isso o Delonix
+    implementa autenticação própria (PBKDF2 + sessões) — a opção segura e sem
+    dependências. Para SSO/LDAP, põe a consola atrás de um proxy autenticado.
+
 ## Sincronização
 
 O painel lê o **mesmo store** que a CLI (`$DELONIX_ROOT`) e **delega as mutações

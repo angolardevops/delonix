@@ -8,7 +8,7 @@ Manage named volumes
 Usage: delonix volume [OPTIONS] <COMMAND>
 
 Commands:
-  create   Create a named volume
+  create   Create a named volume (`--driver nfs --device server:/export` for NFS/TrueNAS)
   ls       List volumes
   inspect  Inspect a volume
   rm       Remove a volume (and its data)
@@ -21,10 +21,10 @@ Options:
 
 ## `delonix volume create`
 
-> Create a named volume
+> Create a named volume (`--driver nfs --device server:/export` for NFS/TrueNAS)
 
 ```text
-Create a named volume
+Create a named volume (`--driver nfs --device server:/export` for NFS/TrueNAS)
 
 Usage: delonix volume create [OPTIONS] <NAME>
 
@@ -32,8 +32,11 @@ Arguments:
   <NAME>  
 
 Options:
-      --pt-pt  Show help in Portuguese (pt-PT) instead of English
-  -h, --help   Print help
+      --driver <DRIVER>  Driver: `local` (default) or `nfs` [default: local]
+      --device <DEVICE>  For `nfs`: the export (`server:/path`)
+      --opt <OPT>        Mount options (`mount -o ...`), e.g. `vers=4,ro`
+      --pt-pt            Show help in Portuguese (pt-PT) instead of English
+  -h, --help             Print help
 ```
 
 ## `delonix volume ls`

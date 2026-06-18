@@ -60,7 +60,7 @@ Options:
       --apparmor <APPARMOR>          Apply an AppArmor profile (MAC), e.g. `delonix-default`
       --selinux <SELINUX>            Apply a SELinux context (SELinux hosts only), e.g. `system_u:system_r:container_t:s0`
   -v, --volume <VOLUMES>             Mount a volume or bind: `source:/dest[:ro]` (repeatable)
-  -p, --publish <PUBLISH>            Publish a port: `hostPort:contPort[/tcp|udp]` (repeatable). Needs a network
+  -p, --publish <PUBLISH>            Publish a port: `hostPort:contPort[/tcp|udp]` (repeatable). Implies the default network
   -e, --env <ENV>                    Set an environment variable: `KEY=value` (repeatable)
       --read-only                    Mount the root filesystem read-only (hardening)
       --cap-drop <CAP_DROP>          Drop capabilities: a name or `ALL` (repeatable)
