@@ -91,7 +91,7 @@ A honestidade faz parte da documentação:
   não funcionam sobre o Delonix por agora.
 - **HA** — réplica activo-activo por armazenamento partilhado funciona; falta o
   *kvstore* replicado para resolver conflitos de escrita entre nós.
-- **Rootless** — falta o *port-forwarding* (`-p`) e `--pod` sem root.
+- **Rootless** — `-p` (port-forwarding) já funciona (via slirp4netns); falta `--pod` sem root.
 
 ---
 
