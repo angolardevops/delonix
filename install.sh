@@ -46,7 +46,8 @@ $SUDO mkdir -p "$DEST"
 $SUDO mv -f "$TMP/$ASSET" "$DEST/delonix"
 say "Instalado: $("$DEST/delonix" --version) em $DEST/delonix"
 
-# ---- autocomplete -------------------------------------------------------
+# ---- autocomplete (best-effort: nunca aborta a instalação) --------------
+set +e
 gen() { "$DEST/delonix" completion "$1" 2>/dev/null; }
 add_comp() { # $1=shell $2=ficheiro-destino
   d="$(dirname "$2")"
@@ -74,8 +75,12 @@ fi
 if command -v fish >/dev/null 2>&1; then
   add_comp fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish/completions/delonix.fish" && installed_any=1
 fi
-[ "$installed_any" = 1 ] && say "Autocomplete instalado — reabre a shell (ou 'source' o teu rc) para activar." \
-  || say "Para activar o autocomplete manualmente:  delonix completion bash | sudo tee /etc/bash_completion.d/delonix"
+if [ "$installed_any" = 1 ]; then
+  say "Autocomplete instalado — reabre a shell (ou 'source' o teu rc) para activar."
+else
+  say "Para activar o autocomplete:  delonix completion bash | sudo tee /etc/bash_completion.d/delonix"
+fi
+set -e
 
 cat <<EOF
 
