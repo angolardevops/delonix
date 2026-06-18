@@ -33,6 +33,20 @@ ecossistema** do Engine num único snapshot (`/api/state`) e actualiza-se sozinh
 - **Eventos** — o `audit.log` do Engine (acções mutáveis).
 - **Idioma** — selector **PT/EN** no topo (a escolha fica guardada).
 
+### Segurança & operações (na consola)
+
+- **Risco** — containers com posturas perigosas (seccomp off, capabilities
+  perigosas, sem userns, dispositivos do host) ficam a **vermelho** com os motivos.
+- **Defesa em profundidade** — no detalhe de cada container: seccomp, user
+  namespace, **filtro eBPF de dispositivos**, rootfs RO, capabilities.
+- **CVE** — botão por imagem que corre o `scan` e mostra CRITICAL/HIGH/MEDIUM/LOW.
+- **Redes** — criar/remover redes a partir da UI.
+- **Novo projecto** — colar um **Delonixfile** + **delonix-stack.yaml**, construir
+  e executar a stack sem ir à CLI.
+- **Monitor** (`sudo delonix monitor`) — serviço do *engine* que mostra ao vivo o
+  que cada container acede para fora e quem o acede de fora (conntrack/netfilter).
+  Isolado: nenhum container consegue ver isto (sem `CAP_NET_ADMIN`, netns próprio).
+
 !!! note "Ligações externas ao vivo"
     O mapa de ligações externas usa o `conntrack` (netlink). Instala-o com
     `sudo apt install conntrack` e corre o painel como root (`sudo delonix serve ui`).
