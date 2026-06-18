@@ -43,6 +43,8 @@ o que o Delonix ainda **não** faz.
 | Bridge + NAT + publicar portas | ✅ | ✅ | ✅ (nftables nativo) |
 | Subnet por omissão | `172.17/16` | `10.88/16` | **`/16` auto-detectado livre** (sem colidir) |
 | Redes de utilizador isoladas | ✅ | ✅ | ✅ |
+| IP fixo no `run` | ✅ `--ip` | ✅ `--ip` | ✅ `--ip` (validado na subnet) |
+| Ligar/desligar redes a quente (multi-homing) | ✅ `network connect/disconnect` | ✅ | ✅ `network connect/disconnect` (`eth<n>`, com `--ip`) |
 | Micro-segmentação (policy entre containers) | parcial | parcial | ✅ `network policy deny/allow` |
 | DNS interno + LB L4 + Ingress L7 | parcial | parcial | ✅ |
 | Limite de banda por container | — | — | ✅ `--net-bps`/`--net-burst` (`tc`) |

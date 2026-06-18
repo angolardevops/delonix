@@ -12,6 +12,8 @@ Commands:
   ls               List networks (the default `bridge` plus user-defined ones)
   rm               Remove a user-defined network (its bridge + nft rules)
   inspect          Show a network's details (bridge, subnet, gateway, members)
+  connect          Connect a running container to an ADDITIONAL network (multi-homing)
+  disconnect       Disconnect a container from an additional network
   policy           Micro-segmentation: deny/allow traffic between two containers (B14)
   block            Block traffic to/from a container (per-container firewall)
   unblock          Unblock a previously blocked container
@@ -83,6 +85,43 @@ Usage: delonix network inspect [OPTIONS] <NAME>
 
 Arguments:
   <NAME>  Network name
+
+Options:
+      --pt-pt  Show help in Portuguese (pt-PT) instead of English
+  -h, --help   Print help
+```
+
+## `delonix network connect`
+
+> Connect a running container to an ADDITIONAL network (multi-homing)
+
+```text
+Connect a running container to an ADDITIONAL network (multi-homing)
+
+Usage: delonix network connect [OPTIONS] <NETWORK> <CONTAINER>
+
+Arguments:
+  <NETWORK>    Network name
+  <CONTAINER>  Container name or id
+
+Options:
+      --ip <IP>  Assign a fixed IP on that network (must be inside its subnet)
+      --pt-pt    Show help in Portuguese (pt-PT) instead of English
+  -h, --help     Print help
+```
+
+## `delonix network disconnect`
+
+> Disconnect a container from an additional network
+
+```text
+Disconnect a container from an additional network
+
+Usage: delonix network disconnect [OPTIONS] <NETWORK> <CONTAINER>
+
+Arguments:
+  <NETWORK>    Network name
+  <CONTAINER>  Container name or id
 
 Options:
       --pt-pt  Show help in Portuguese (pt-PT) instead of English

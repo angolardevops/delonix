@@ -47,6 +47,9 @@ ecossistema** do Engine num único snapshot (`/api/state`) e actualiza-se sozinh
   --device servidor:/export`; requer `nfs-common`).
 - **Reconfigurar recursos** — mudar memória/CPU/política de reinício de um
   container ao vivo (sem recriar).
+- **Reconfigurar rede ao vivo** — no modal *Reconfigurar*: **ligar** o container
+  a uma rede adicional (com **IP fixo** opcional) e **desligar**, sem recriar
+  (multi-homing). Cada rede extra é uma interface `eth<n>` própria.
 - **Monitor** (`sudo delonix monitor`) — serviço do *engine* que mostra ao vivo o
   que cada container acede para fora e quem o acede de fora (conntrack/netfilter).
   Isolado: nenhum container consegue ver isto (sem `CAP_NET_ADMIN`, netns próprio).

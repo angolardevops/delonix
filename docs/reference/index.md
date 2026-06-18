@@ -44,7 +44,7 @@ Apêndice de **todos** os comandos e subcomandos do Delonix, gerado a partir do 
 
 ## Rede & orquestração
 
-- [`delonix network`](network.md) — 9 subcomandos
+- [`delonix network`](network.md) — 11 subcomandos
 - [`delonix volume`](volume.md) — 4 subcomandos
 - [`delonix pod`](pod.md) — 3 subcomandos
 - [`delonix service`](service.md) — 6 subcomandos

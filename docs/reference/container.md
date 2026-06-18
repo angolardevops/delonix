@@ -52,6 +52,7 @@ Options:
   -m, --memory <MEMORY>              Memory limit (e.g. 64M). Defaults to the image's, or 64M
   -c, --cpus <CPUS>                  CPU limit in cores (e.g. 0.5). Defaults to the image's, or 1.0
       --network[=<NETWORK>]          Attach to a network: bare `--network` = default `bridge`, or `--network=<name>` for a user-defined network (veth + bridge + NAT)
+      --ip <IP>                      Assign a fixed IP on the network (must be inside its subnet), e.g. `10.88.0.50`
       --pod <POD>                    Join a pod (shares the pod's network, like Podman)
       --userns                       Isolate with a user namespace (container root ≠ host root)
       --cpu-weight <CPU_WEIGHT>      CPU priority/weight (1–10000) — scheduling (cgroup cpu.weight)

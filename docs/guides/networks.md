@@ -37,6 +37,37 @@ delonix network inspect frontend
 # web e db NÃO comunicam (redes diferentes)
 ```
 
+## IP fixo
+
+Atribui um endereço escolhido (em vez do derivado do id), validado contra a
+subnet da rede:
+
+```bash
+delonix run -d --network=frontend --ip 10.200.0.50 --name web nginx
+delonix inspect web | grep ip            # 10.200.0.50
+```
+
+## Ligar/desligar redes a quente (multi-homing)
+
+Um container **em execução** pode ser ligado a redes **adicionais** sem ser
+recriado — ganha uma interface `eth1`, `eth2`, … por rede (estilo `docker
+network connect`):
+
+```bash
+delonix run -d --name web --network=frontend nginx
+delonix network connect backend web                 # web ganha eth1 na backend
+delonix network connect dmz web --ip 10.50.0.9      # com IP fixo
+delonix inspect web | grep -A4 extra_networks       # redes adicionais + IPs
+delonix network disconnect backend web              # remove a interface
+```
+
+A rede **primária** (a do `run`) não se desliga a quente — pára/recria o
+container para a mudar. As redes adicionais vivem no *netns* do container: ao
+**parar**, são limpas (não são re-estabelecidas no arranque seguinte).
+
+Na **consola web** (`serve ui`), o modal *Reconfigurar* de cada container lista
+as suas redes e permite ligar/desligar ao vivo, com IP fixo opcional.
+
 ## Micro-segmentação
 
 Bloqueia/permite tráfego entre containers específicos (firewall por elemento,
