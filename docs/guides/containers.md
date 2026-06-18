@@ -9,8 +9,15 @@ cada container é filho do `delonix` que o arrancou.
 ```bash
 delonix run alpine echo olá                 # efémero, em primeiro plano
 delonix run -d --name web nginx             # em segundo plano (detached)
+delonix run -d -p 8080:80 nginx             # -p liga à rede por omissão (como Docker)
 delonix run -it ubuntu bash                 # interactivo com TTY
 ```
+
+!!! tip "Atalhos ao estilo Docker"
+    - **`-p` implica rede** — não precisas de `--network`; o container liga à
+      bridge por omissão automaticamente.
+    - **Sem `--name`**, o Delonix gera um nome amigável e único — municípios e
+      reis/rainhas de Angola + um sufixo (ex.: `njinga-1a2b3c`, `luanda-9f0e1d`).
 
 !!! note "Nomes e portas são validados"
     Como no Docker/Podman, o `run` **recusa** um `--name` que já exista e uma

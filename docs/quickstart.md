@@ -16,13 +16,17 @@ delonix run alpine echo "olá, mundo"
 O Delonix puxa a imagem `alpine` (se ainda não a tiver), cria um container com
 *namespaces* novos, *seccomp*, *user namespace* e corre o comando.
 
-Em segundo plano, com nome e rede:
+Em segundo plano com porta publicada (`-p` já liga à rede por omissão, como no Docker):
 
 ```bash
-sudo delonix run -d --name web --network -p 8080:80 nginx
+sudo delonix run -d --name web -p 8080:80 nginx
 sudo delonix ps
 curl localhost:8080
 ```
+
+!!! note "Nomes automáticos"
+    Sem `--name`, o Delonix gera um nome amigável e único — municípios e reis de
+    Angola + sufixo (ex.: `njinga-1a2b3c`).
 
 ## 2. Entrar no container
 
