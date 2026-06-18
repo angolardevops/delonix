@@ -32,6 +32,13 @@ Flags de execução mais comuns:
 delonix ps               # a correr        |  delonix ps -a   # todos
 delonix ps -q            # só IDs (scripting) | delonix ps -aq # todos, só IDs
 delonix rm -f $(delonix ps -aq)   # remove todos (como no Docker/Podman)
+```
+
+A saída segue o formato do Docker (colunas de largura dinâmica):
+
+```text
+CONTAINER ID   IMAGE   COMMAND                  CREATED         STATUS         PORTS                  NAMES
+ae04ef086f59   nginx   "nginx -g daemon off;"   5 minutes ago   Up 5 minutes   0.0.0.0:8000->80/tcp   web
 delonix stop web         # SIGTERM → SIGKILL
 delonix start web        # rearranca um container parado
 delonix restart web
