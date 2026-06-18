@@ -83,6 +83,7 @@ Usage: delonix container ls [OPTIONS]
 
 Options:
   -a, --all    
+  -q, --quiet  Only print container IDs (for scripting)
       --pt-pt  Show help in Portuguese (pt-PT) instead of English
   -h, --help   Print help
 ```

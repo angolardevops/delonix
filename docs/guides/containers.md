@@ -30,6 +30,8 @@ Flags de execução mais comuns:
 
 ```bash
 delonix ps               # a correr        |  delonix ps -a   # todos
+delonix ps -q            # só IDs (scripting) | delonix ps -aq # todos, só IDs
+delonix rm -f $(delonix ps -aq)   # remove todos (como no Docker/Podman)
 delonix stop web         # SIGTERM → SIGKILL
 delonix start web        # rearranca um container parado
 delonix restart web
