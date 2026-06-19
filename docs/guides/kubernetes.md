@@ -94,8 +94,10 @@ delonix cluster rm dev                # remove
 - A topologia (control-plane, workers), o **CNI** e a **versão do K8s** são
   configuráveis — nada está fixo.
 
-Na **consola web** (`serve ui`), o assistente *Criar cluster* usa os mesmos
-endpoints REST:
+No **painel embebido** (`sudo delonix serve ui`, sem flags) há uma vista
+**Kubernetes** na barra lateral: lista as ferramentas detetadas e os clusters, e
+o botão **Criar cluster** abre o assistente — que cria o cluster **de verdade**
+(mesma origem da API). Os endpoints REST são:
 
 ```
 GET  /api/k8s/tools           # deteção
