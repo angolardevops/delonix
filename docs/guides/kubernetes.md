@@ -76,6 +76,37 @@ Context** (namespaces de host, seccomp por caminho, run-as-user), **Streaming**
 (`Exec`/`Attach`/`PortForward`) e **partilha de namespaces do pod sandbox** — o
 roteiro a seguir. (Honestidade: ainda não é conforme; é um número de partida real.)
 
+## Criar um cluster (real)
+
+O Delonix **deteta** as ferramentas de cluster instaladas e **cria clusters
+reais**, delegando na ferramenta escolhida — não reimplementa o instalador.
+
+```bash
+delonix cluster tools                 # deteta Kind/k3d/minikube/kubeadm/k0s/Talos (versão + caminho)
+delonix cluster create --tool kind --name dev --control-plane 1 --workers 2
+delonix cluster ls                    # clusters existentes
+delonix cluster rm dev                # remove
+```
+
+- **Single-host multi-nó** (criados de verdade): **Kind**, **k3d**, **minikube**.
+- **kubeadm / k0s / Talos** são detetados mas exigem várias máquinas — o Delonix
+  recusa-os no modo local com uma explicação (não há magia escondida).
+- A topologia (control-plane, workers), o **CNI** e a **versão do K8s** são
+  configuráveis — nada está fixo.
+
+Na **consola web** (`serve ui`), o assistente *Criar cluster* usa os mesmos
+endpoints REST:
+
+```
+GET  /api/k8s/tools           # deteção
+GET  /api/k8s/clusters        # lista
+POST /api/k8s/cluster         # cria  { tool, name, control_plane, workers, cni?, k8s_version? }
+POST /api/k8s/cluster/<n>/rm  # remove
+```
+
+> Depois de criar, o `kubectl` fica com o contexto do novo cluster. O Delonix
+> pode então servir os pods como **CRI** (`delonix cri`).
+
 ## Gerar manifests
 
 ```bash
