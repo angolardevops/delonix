@@ -33,11 +33,18 @@ está implementado e verificado, com o **código de saída real** propagado.
 | `ImageService` (pull/list/remove) | ✅ |
 | `ContainerStats`/`ListContainerStats` (CPU+memória) | ✅ |
 | `PodSandboxStats`/`ListPodSandboxStats` (agregado) | ✅ |
-| `Exec`/`Attach`/`PortForward` (streaming) | ❌ `UNIMPLEMENTED` |
+| `ExecSync` (sondas exec do kubelet, `crictl exec -s`) | ✅ |
+| Pod sandbox = pod real (infra + netns partilhado, IP) | ✅ |
+| Security context (readonly, caps, seccomp, apparmor, privileged) | ✅ |
+| `Exec`/`Attach`/`PortForward` (streaming interactivo) | ❌ `UNIMPLEMENTED` |
 
-Ou seja: o Delonix **corre** pods e containers para o kubelet e fornece-lhe
-**métricas reais** (Summary API / HPA), mas `kubectl exec`, `logs -f` e
-`port-forward` (streaming) ainda não estão disponíveis.
+O **pod sandbox** cria um pod real do Delonix — um *infra container* que detém o
+**network namespace partilhado** (estilo *pause*), ao qual os containers se juntam
+(`--pod`); o IP do pod é reportado no `PodSandboxStatus`. O **security context**
+do CRI é traduzido para as flags do `delonix run` (rootfs só-leitura, capabilities
+add/drop, seccomp *unconfined*, AppArmor, privileged). O `ExecSync` corre comandos
+no container (sondas `exec` do kubelet). Falta o **streaming interactivo**
+(`kubectl exec -it`, `attach`, `port-forward`).
 
 ### Métricas (CRI stats)
 
