@@ -16,6 +16,24 @@ sudo delonix serve ui --console ./delonix-console.html   # serve a Console compl
     `--console <ficheiro.html>` — fica na **mesma origem** da API, por isso tudo
     o que ela faz é **real** (ver [Criar um cluster](kubernetes.md#criar-um-cluster-real)).
 
+!!! success "Ligada ao engine (dados e ações reais)"
+    Quando servida com `--console`, a Console deteta o engine e mostra um selo
+    **“Ligado ao engine — dados reais”**. Passam a ser reais: a lista de
+    containers/imagens/redes/volumes e as **métricas do host**; as **ações de
+    ciclo de vida** (iniciar/parar/reiniciar/remover); a **consola `exec`** e os
+    **registos** do container; e **remover imagem / criar e remover rede**. Sem
+    engine (ficheiro aberto sozinho), cai para **modo demo** com dados de exemplo.
+
+### Edição de manifestos com versionamento (mini-git no host)
+
+A Console deixa **editar o YAML** de deployments/services/stacks (e o
+Dockerfile/Delonixfile), **aplicar** (recria os pods) e **reverter** para uma
+versão anterior. O histórico **não** vive no browser: é guardado no engine como
+um **version store content-addressed** (um “mini-git” interno, sem dependência do
+`git`), em `<base>/manifests/` — recuperável e persistente. Os pods do
+**control-plane** são só-leitura. Endpoints: `POST/GET /api/manifests`,
+`GET /api/manifests/blob/<sha>`.
+
 ---
 
 ## As telas
