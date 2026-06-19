@@ -56,11 +56,50 @@ Vê a [tabela comparativa Docker · Podman · Delonix](compare.md) para a fotogr
 
 ## Por onde começar
 
+Um percurso **do zero ao avançado**, sem saltos. Segue por ordem — cada passo
+prepara o seguinte.
+
 <div class="grid cards" markdown>
 
--   [:material-download: __Instalação__](install.md) — põe o binário a correr.
--   [:material-rocket-launch: __Arranque rápido__](quickstart.md) — o teu primeiro container, imagem e rede.
--   [:material-school: __Guias__](guides/containers.md) — aprende por temas, ao estilo *get started*.
--   [:material-book-open-variant: __Referência de comandos__](reference/index.md) — apêndice de **todos** os comandos.
+-   :material-numeric-1-circle:{ .lg .middle } __Instala__
+
+    ---
+
+    [__Instalação__](install.md) — uma linha, um binário. Sem daemon, sem VM.
+
+-   :material-numeric-2-circle:{ .lg .middle } __Arranca__
+
+    ---
+
+    [__Arranque rápido__](quickstart.md) — o teu primeiro container, imagem e rede em minutos.
+
+-   :material-numeric-3-circle:{ .lg .middle } __Aprende o essencial__
+
+    ---
+
+    [__Guias essenciais__](guides/containers.md) — containers, imagens, volumes, redes, stacks e pods, por temas.
+
+-   :material-numeric-4-circle:{ .lg .middle } __Gere no browser__
+
+    ---
+
+    [__A Consola__](guides/console.md) — o painel web completo (telas, alertas, Kubernetes, criar cluster).
+
+-   :material-numeric-5-circle:{ .lg .middle } __Vai mais fundo__
+
+    ---
+
+    [__Avançado__](guides/rootless.md) — rootless, segurança, **Kubernetes (CRI)**, plataforma de IA, host remoto.
+
+-   :material-book-open-variant:{ .lg .middle } __Consulta__
+
+    ---
+
+    [__Referência__](reference/index.md) — apêndice de **todos** os comandos · [__Conceitos__](concepts/architecture.md) para o *porquê*.
 
 </div>
+
+!!! tip "Novo no Delonix?"
+    Se já usas Docker/Podman, salta para o [Arranque rápido](quickstart.md) e a
+    [tabela comparativa](compare.md) — a maioria dos comandos é familiar. Para o
+    painel, vê [a Consola](guides/console.md).

@@ -61,22 +61,25 @@ plugins:
 
 nav:
   - Início: index.md
-  - Instalação: install.md
-  - Arranque rápido: quickstart.md
-  - Docker · Podman · Delonix: compare.md
-  - Guias:
+  - Começar:
+      - Instalação: install.md
+      - Arranque rápido: quickstart.md
+      - Docker · Podman · Delonix: compare.md
+  - Guias essenciais:
       - Containers: guides/containers.md
       - Imagens: guides/images.md
       - Volumes e dados: guides/volumes.md
       - Redes: guides/networks.md
       - Stacks (compose): guides/compose.md
       - Pods: guides/pods.md
+  - A Consola (painel web): guides/console.md
+  - Avançado:
       - Rootless: guides/rootless.md
       - Segurança: guides/security.md
-      - Painel web: guides/web-ui.md
-      - Plataforma de IA: guides/ai-llm.md
       - Kubernetes (CRI): guides/kubernetes.md
+      - Plataforma de IA: guides/ai-llm.md
       - Host remoto (SSH): guides/remote.md
+      - Painel — arrancar & login: guides/web-ui.md
   - Conceitos:
       - Arquitectura: concepts/architecture.md
       - Protecção do host: concepts/host-protection.md
