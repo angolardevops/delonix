@@ -108,8 +108,8 @@ redes, links, redirect com diagrama animado), **Firewall** (regras ingress/egres
 
 ## Desvantagens / limitações
 
-- **Sem streaming interativo completo** ainda — `kubectl exec -it` / `attach` /
-  `port-forward` interativos estão em curso (o `exec` não-interativo funciona).
+- **Streaming parcial** — `kubectl exec -it` (SPDY + WebSocket, com TTY e exit
+  code) **funciona**; faltam o `attach` e o `port-forward` interativos.
 - **Single-host** por omissão — não orquestra uma frota como uma plataforma
   cloud (usa o modo Kubernetes para isso).
 - **Sem GUI nativa de SO** — é um painel web (browser), não uma app de tabuleiro

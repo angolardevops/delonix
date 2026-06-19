@@ -34,20 +34,37 @@ está implementado e verificado, com o **código de saída real** propagado.
 | `ContainerStats`/`ListContainerStats` (CPU+memória) | ✅ |
 | `PodSandboxStats`/`ListPodSandboxStats` (agregado) | ✅ |
 | `ExecSync` (sondas exec do kubelet, `crictl exec -s`) | ✅ |
+| `Exec` **interactivo** (`kubectl exec -it`, `crictl exec -it`) — SPDY + WebSocket | ✅ |
 | Pod sandbox = pod real (infra + netns partilhado, IP) | ✅ |
 | Security context (readonly, caps, seccomp, apparmor, privileged) | ✅ |
 | Namespaces de host (`namespace_options` PID/IPC = NODE) | ✅ |
 | AppArmor (perfil carregado; rejeita não-carregado) + sysctls de pod | ✅ |
 | `RemoveImage` idempotente | ✅ |
-| `Exec`/`Attach`/`PortForward` (streaming interactivo) | ❌ `UNIMPLEMENTED` |
+| `Attach`/`PortForward` (streaming) | ❌ `UNIMPLEMENTED` |
 
 O **pod sandbox** cria um pod real do Delonix — um *infra container* que detém o
 **network namespace partilhado** (estilo *pause*), ao qual os containers se juntam
 (`--pod`); o IP do pod é reportado no `PodSandboxStatus`. O **security context**
 do CRI é traduzido para as flags do `delonix run` (rootfs só-leitura, capabilities
 add/drop, seccomp *unconfined*, AppArmor, privileged). O `ExecSync` corre comandos
-no container (sondas `exec` do kubelet). Falta o **streaming interactivo**
-(`kubectl exec -it`, `attach`, `port-forward`).
+no container (sondas `exec` do kubelet).
+
+### Streaming interactivo (`kubectl exec -it`)
+
+O `Exec` devolve uma **URL** para um servidor de streaming embebido que fala o
+protocolo *remotecommand* do Kubernetes em **dois transportes**:
+
+- **SPDY/3.1** — o que o `crictl` e o `kubelet` de hoje usam (com compressão de
+  cabeçalhos zlib + o dicionário fixo SPDY/3, controlo de fluxo por-stream).
+- **WebSocket** (`v5.channel.k8s.io`) — o transporte futuro para que o Kubernetes
+  está a migrar.
+
+Suporta stdin, stdout/stderr separados, **TTY** (aloca um *pty* real no devpts do
+container, à `runc`), redimensionamento e **propagação do exit code**. Verificado
+com `crictl exec`/`exec -it` e pela suite `critest` (specs de exec a passar).
+
+Falta ainda o **`Attach`** (ligar ao processo principal de um container já a
+correr) e o **`PortForward`** — em curso.
 
 ### Métricas (CRI stats)
 
@@ -70,11 +87,14 @@ sudo critest -runtime-endpoint unix:///run/delonix-cri.sock \
              -image-endpoint   unix:///run/delonix-cri.sock
 ```
 
-Estado actual: **29 Passed | 63 Failed | 30 Skipped** (92 de 122 specs). Passam o
-ciclo de vida base, imagens e métricas. As falhas concentram-se em **Security
-Context** (namespaces de host, seccomp por caminho, run-as-user), **Streaming**
-(`Exec`/`Attach`/`PortForward`) e **partilha de namespaces do pod sandbox** — o
-roteiro a seguir. (Honestidade: ainda não é conforme; é um número de partida real.)
+Baseline anterior: **29 Passed | 63 Failed | 30 Skipped**. Passam o ciclo de vida
+base, imagens e métricas. **Novidade:** os specs de **`Exec`** (incluindo o
+streaming interactivo) passam agora a verde — uma corrida focada do `critest`
+(`-ginkgo.focus 'Exec'`) dá **5 Passed | 0 Failed**. As falhas restantes
+concentram-se em **Security Context** (namespaces de host, segmento de memória
+partilhada, run-as-user), **`Attach`/`PortForward`** e **partilha de namespaces
+do pod sandbox** — o roteiro a seguir. (Honestidade: ainda não é totalmente
+conforme; são números reais e medidos.)
 
 ## Criar um cluster (real)
 
