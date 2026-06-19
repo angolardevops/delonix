@@ -37,6 +37,7 @@ está implementado e verificado, com o **código de saída real** propagado.
 | Pod sandbox = pod real (infra + netns partilhado, IP) | ✅ |
 | Security context (readonly, caps, seccomp, apparmor, privileged) | ✅ |
 | Namespaces de host (`namespace_options` PID/IPC = NODE) | ✅ |
+| AppArmor (perfil carregado; rejeita não-carregado) + sysctls de pod | ✅ |
 | `RemoveImage` idempotente | ✅ |
 | `Exec`/`Attach`/`PortForward` (streaming interactivo) | ❌ `UNIMPLEMENTED` |
 
