@@ -36,6 +36,8 @@ está implementado e verificado, com o **código de saída real** propagado.
 | `ExecSync` (sondas exec do kubelet, `crictl exec -s`) | ✅ |
 | Pod sandbox = pod real (infra + netns partilhado, IP) | ✅ |
 | Security context (readonly, caps, seccomp, apparmor, privileged) | ✅ |
+| Namespaces de host (`namespace_options` PID/IPC = NODE) | ✅ |
+| `RemoveImage` idempotente | ✅ |
 | `Exec`/`Attach`/`PortForward` (streaming interactivo) | ❌ `UNIMPLEMENTED` |
 
 O **pod sandbox** cria um pod real do Delonix — um *infra container* que detém o

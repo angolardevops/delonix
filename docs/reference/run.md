@@ -20,6 +20,8 @@ Options:
       --ip <IP>                      Assign a fixed IP on the network (must be inside its subnet), e.g. `10.88.0.50`
       --pod <POD>                    Join a pod (shares the pod's network, like Podman)
       --userns                       Isolate with a user namespace (container root ≠ host root)
+      --host-pid                     Share the host PID namespace (see host processes; like `docker --pid=host`)
+      --host-ipc                     Share the host IPC namespace (host shared memory / message queues)
       --cpu-weight <CPU_WEIGHT>      CPU priority/weight (1–10000) — scheduling (cgroup cpu.weight)
       --cpuset <CPUSET>              Core affinity (e.g. `0-1`) — pinning (cgroup cpuset.cpus)
       --io-weight <IO_WEIGHT>        Disk I/O weight (1–10000) — cgroup io.weight
