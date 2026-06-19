@@ -50,6 +50,22 @@ CPU vem do `cpu.stat` do cgroup v2 (cumulativa, em core-nanossegundos); a memór
 do RSS real dos processos do cgroup. É o que o **kubelet** lê para a Summary API e
 o **HPA** para escalar.
 
+## Conformância (critest)
+
+Baseline objectivo medido com a suite **`critest`** (cri-tools), com o servidor a
+correr e ambas as endpoints (runtime + image) a apontar para o socket do Delonix:
+
+```bash
+sudo critest -runtime-endpoint unix:///run/delonix-cri.sock \
+             -image-endpoint   unix:///run/delonix-cri.sock
+```
+
+Estado actual: **29 Passed | 63 Failed | 30 Skipped** (92 de 122 specs). Passam o
+ciclo de vida base, imagens e métricas. As falhas concentram-se em **Security
+Context** (namespaces de host, seccomp por caminho, run-as-user), **Streaming**
+(`Exec`/`Attach`/`PortForward`) e **partilha de namespaces do pod sandbox** — o
+roteiro a seguir. (Honestidade: ainda não é conforme; é um número de partida real.)
+
 ## Gerar manifests
 
 ```bash
